@@ -1,16 +1,14 @@
 package com.example.bancartontrendage.Entity;
 
 import com.example.bancartontrendage.Dto.UserDto;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@Table(name = "user")
 public class UserEntity {
     @Id
     @GeneratedValue
