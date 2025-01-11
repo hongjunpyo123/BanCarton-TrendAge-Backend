@@ -1,3 +1,4 @@
+package com.example.bancartontrendage.RestController;
 import com.example.bancartontrendage.Dto.UserDto;
 import com.example.bancartontrendage.Entity.UserEntity;
 import com.example.bancartontrendage.Service.UserService;
