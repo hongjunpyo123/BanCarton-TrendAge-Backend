@@ -44,4 +44,29 @@ public class Service {
         }
     }
 
+
+    public UserDto createInitialUser(String nickname) {
+        // 새로운 UserDto 객체 생성
+        UserDto userDto = new UserDto();
+
+        // 기본 정보 설정
+        userDto.setNickname(nickname);  // 입력받은 닉네임 설정
+        userDto.setAge(0L);            // 나이 0으로 초기화
+        userDto.setLevel("틀");         // 레벨 "틀"로 초기화
+
+        // DB에 저장하고 저장된 결과를 DTO로 변환하여 반환
+        return userRepository.save(userDto.toEntity()).toDto();
+    }
+
+    public UserDto createUser(UserDto userDto) {
+        userDto.setLevel("틀");
+        userDto.setAge(0L);
+        try {
+            userEntity = userRepository.save(userDto.toEntity());
+            return userEntity.toDto();
+        }catch (Exception e){
+            return null;
+        }
+    }
+
 }

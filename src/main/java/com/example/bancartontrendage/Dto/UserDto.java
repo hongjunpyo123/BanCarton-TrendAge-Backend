@@ -12,7 +12,7 @@ public class UserDto {
     private Long age;
     private String level;
 
-    public UserEntity toEntity(){ //dto객체를 entity객체로 변환
+    public UserEntity toEntity(){ //dto객체를 entity객체로 변환ia
         UserEntity userEntity = new UserEntity();
         userEntity.setNickname(this.nickname);
         userEntity.setAge(this.age);
