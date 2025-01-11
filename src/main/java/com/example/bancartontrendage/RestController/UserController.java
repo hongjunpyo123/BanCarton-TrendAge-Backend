@@ -15,7 +15,12 @@ public class UserController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
-        return ResponseEntity.ok(service.createUser(userDto));
+        UserDto userDto1 = service.createUser(userDto);
+        if(userDto1 == null){
+            return ResponseEntity.badRequest().body(null);
+        } else {
+            return ResponseEntity.ok(userDto1);
+        }
     }
 
 }
