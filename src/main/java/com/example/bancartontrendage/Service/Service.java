@@ -11,6 +11,7 @@ import com.example.bancartontrendage.Repository.MemeRepository;
 import com.example.bancartontrendage.Repository.UserRepository;
 import com.example.bancartontrendage.RestController.MemeController;
 import com.example.bancartontrendage.Util.Util;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -49,15 +50,14 @@ public class Service {
         }
     }
 
-    public UserDto createUser(UserDto userDto) {
+    public UserDto createUser(UserDto userDto, HttpSession session) {
         userDto.setLevel("틀");
         userDto.setAge(0L);
-        try {
+            userDto.setId(null);
             userEntity = userRepository.save(userDto.toEntity());
+            session.setAttribute("userId", userEntity.getId());
             return userEntity.toDto();
-        }catch (Exception e){
-            return null;
-        }
+
     }
 
     public List<MemeQuestionDto> findMemeChoice(Long memeId){
@@ -66,6 +66,40 @@ public class Service {
             return null;
         } else {
             return MemeQuestionEntityList.stream().map(MemeQuestionEntity::toDto).toList();
+        }
+    }
+
+    public UserDto updateUser(UserDto userDto) {
+        //잼민이 -> 급식 -> MZ  -> 틀
+        //잼민이 0살~13살
+        //급식  14살~19살
+        //mz   20살~29살
+        //틀   30살~
+        System.out.println(userDto.getId());
+        userDto.setAge(76L - (userDto.getScore()*2));
+        if(0 <= userDto.getAge() && userDto.getAge() <= 13){ //잼민이
+            userDto.setLevel("잼민이");
+        } else if (14 <= userDto.getAge() && userDto.getAge() <= 19){ //급식
+            userDto.setLevel("급식");
+        } else if (20 <= userDto.getAge() && userDto.getAge() <= 29){ //MZ
+            userDto.setLevel("MZ");
+        } else { //틀
+            userDto.setLevel("틀");
+        }
+        try {
+            userEntity = userRepository.save(userDto.toEntity());
+            return userEntity.toDto();
+        } catch (Exception e){
+            return null;
+        }
+    }
+
+    public List<UserDto> findAllUsers(){
+        List<UserEntity> userEntityList = userRepository.findAllByOrderByAgeAsc();
+        if(userEntityList.isEmpty()){
+            return null;
+        } else {
+            return userEntityList.stream().map(UserEntity::toDto).toList();
         }
     }
 

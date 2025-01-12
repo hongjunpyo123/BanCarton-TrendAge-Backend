@@ -11,12 +11,15 @@ public class UserDto {
     private String nickname;
     private Long age;
     private String level;
+    private Long score;
 
     public UserEntity toEntity(){ //dto객체를 entity객체로 변환ia
         UserEntity userEntity = new UserEntity();
         userEntity.setNickname(this.nickname);
         userEntity.setAge(this.age);
         userEntity.setLevel(this.level);
+        userEntity.setScore(this.score);
+        userEntity.setId(this.id);
         return userEntity;
     }
 }

@@ -10,14 +10,14 @@ public class MemeQuestionDto {
     private Long id;
     private Long memeId;
     private String choice;
-    private String url;
+    private String answer;
 
     public MemeQuestionEntity toEntity(){
         MemeQuestionEntity memeQuestionEntity = new MemeQuestionEntity();
         memeQuestionEntity.setId(this.id);
         memeQuestionEntity.setMemeId(this.memeId);
         memeQuestionEntity.setChoice(this.choice);
-        memeQuestionEntity.setUrl(this.url);
+        memeQuestionEntity.setAnswer(this.answer);
         return memeQuestionEntity;
     }
 }

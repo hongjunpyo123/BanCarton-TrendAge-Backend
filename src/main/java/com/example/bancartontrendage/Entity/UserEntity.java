@@ -23,12 +23,16 @@ public class UserEntity {
     @Column(length = 255)
     private String level;
 
+    @Column
+    private Long score;
+
     public UserDto toDto(){ //Entity객체를 dto객체로 변환
         UserDto userDto = new UserDto();
         userDto.setId(this.id);
         userDto.setNickname(this.nickname);
         userDto.setAge(this.age);
         userDto.setLevel(this.level);
+        userDto.setScore(this.score);
         return userDto;
     }
 }

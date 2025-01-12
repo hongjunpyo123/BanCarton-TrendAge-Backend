@@ -21,7 +21,7 @@ public class MemeQuestionEntity {
     private String choice;
 
     @Column(length = 255)
-    private String url;
+    private String answer;
 
 
     public MemeQuestionDto toDto(){
@@ -29,7 +29,7 @@ public class MemeQuestionEntity {
         memeQuestionDto.setId(this.id);
         memeQuestionDto.setMemeId(this.memeId);
         memeQuestionDto.setChoice(this.choice);
-        memeQuestionDto.setUrl(this.url);
+        memeQuestionDto.setAnswer(this.answer);
         return memeQuestionDto;
     }
 
