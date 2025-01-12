@@ -13,6 +13,8 @@ public class MemeDto {
     private String content;
     private Long year;
     private String explanation;
+    private String question;
+    private Long answer;
 
 
     public MemeEntity toEntity(){ //dto객체를 entity객체로 변환
@@ -20,6 +22,8 @@ public class MemeDto {
         memeEntity.setContent(this.content);
         memeEntity.setYear(this.year);
         memeEntity.setExplanation(this.explanation);
+        memeEntity.setQuestion(this.question);
+        memeEntity.setAnswer(this.answer);
         return memeEntity;
     }
 }

@@ -1,9 +1,12 @@
 package com.example.bancartontrendage.Service;
 
 import com.example.bancartontrendage.Dto.MemeDto;
+import com.example.bancartontrendage.Dto.MemeQuestionDto;
 import com.example.bancartontrendage.Dto.UserDto;
 import com.example.bancartontrendage.Entity.MemeEntity;
+import com.example.bancartontrendage.Entity.MemeQuestionEntity;
 import com.example.bancartontrendage.Entity.UserEntity;
+import com.example.bancartontrendage.Repository.MemeQuestionRepository;
 import com.example.bancartontrendage.Repository.MemeRepository;
 import com.example.bancartontrendage.Repository.UserRepository;
 import com.example.bancartontrendage.RestController.MemeController;
@@ -19,6 +22,8 @@ public class Service {
     private MemeRepository memeRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private MemeQuestionRepository memeQuestionRepository;
     private MemeDto memeDto = new MemeDto();
     private UserDto userDto = new UserDto();
     private MemeEntity memeEntity = new MemeEntity();
@@ -45,12 +50,22 @@ public class Service {
     }
 
     public UserDto createUser(UserDto userDto) {
-
+        userDto.setLevel("틀");
+        userDto.setAge(0L);
         try {
             userEntity = userRepository.save(userDto.toEntity());
             return userEntity.toDto();
         }catch (Exception e){
             return null;
+        }
+    }
+
+    public List<MemeQuestionDto> findMemeChoice(Long memeId){
+        List<MemeQuestionEntity>MemeQuestionEntityList = memeQuestionRepository.findByMemeId(memeId);
+        if(MemeQuestionEntityList.isEmpty()){
+            return null;
+        } else {
+            return MemeQuestionEntityList.stream().map(MemeQuestionEntity::toDto).toList();
         }
     }
 

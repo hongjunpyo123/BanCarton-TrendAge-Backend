@@ -2,6 +2,7 @@ package com.example.bancartontrendage.RestController;
 
 
 import com.example.bancartontrendage.Dto.MemeDto;
+import com.example.bancartontrendage.Dto.MemeQuestionDto;
 import com.example.bancartontrendage.Service.Service;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,17 @@ public class MemeController {
         } else {
             return ResponseEntity.ok(memeDtoList);
         }
+    }
+
+    @GetMapping("/choice/{memeId}")
+    public ResponseEntity<?> findMemeChoice(@PathVariable Long memeId){
+        List<MemeQuestionDto> memeQuestionDtoList = service.findMemeChoice(memeId);
+        if(memeQuestionDtoList == null){
+            return ResponseEntity.badRequest().body("해당 밈의 선택지를 찾지 못하였음..");
+        } else {
+            return ResponseEntity.ok(memeQuestionDtoList);
+        }
+
     }
 
 

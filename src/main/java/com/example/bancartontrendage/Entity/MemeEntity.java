@@ -23,12 +23,20 @@ public class MemeEntity {
     @Column(length = 255)
     private String explanation;
 
+    @Column(length = 255)
+    private String question;
+
+    @Column
+    private Long answer;
+
     public MemeDto toDto(){ //Entity객체를 dto객체로 변환
         MemeDto memeDto = new MemeDto();
         memeDto.setId(this.id);
         memeDto.setContent(this.content);
         memeDto.setYear(this.year);
         memeDto.setExplanation(this.explanation);
+        memeDto.setQuestion(this.question);
+        memeDto.setAnswer(this.answer);
 
         return memeDto;
     }
