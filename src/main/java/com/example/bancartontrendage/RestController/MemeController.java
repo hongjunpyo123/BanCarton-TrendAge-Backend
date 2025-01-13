@@ -18,9 +18,9 @@ public class MemeController {
     @Autowired
     private Service service;
 
-    @GetMapping
+    @GetMapping //밈 데이터 20개 랜덤 조회
     public ResponseEntity<?> findAllMemes(){
-        List<MemeDto> memeDtoList = service.findAllMemes();
+        List<MemeDto> memeDtoList = service.find20Memes();
         if(memeDtoList == null){
             return ResponseEntity.badRequest().body("밈 데이터를 찾지 못하였음..");
         } else {
