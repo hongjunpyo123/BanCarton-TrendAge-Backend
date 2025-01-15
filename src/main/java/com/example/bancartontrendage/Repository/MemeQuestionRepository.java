@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface MemeQuestionRepository extends JpaRepository<MemeQuestionEntity, Long> {
     List<MemeQuestionEntity> findByMemeId(Long memeId);
+    MemeQuestionEntity findTopByOrderByIdDesc();
 }

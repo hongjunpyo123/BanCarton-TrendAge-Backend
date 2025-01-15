@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지 - 밈 추가</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #343a40;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #dee2e6;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #212529;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f1f3f5;
+            border-radius: 8px;
+        }
+        .section h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #495057;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #ffffff;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, select:focus {
+            border-color: #495057;
+            outline: none;
+            background-color: #ffffff;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>새로운 밈 추가</h1>
+    <form action="/admin/createMeme" method="POST">
+        <div class="section">
+            <h2>밈 제목 입력</h2>
+            <div class="form-group">
+                <label for="meme-title">밈 제목</label>
+                <input type="text" id="meme-title" name="question" placeholder="밈 제목을 입력하세요" required>
+            </div>
+        </div>
+        <div class="section">
+            <h2>질문 입력</h2>
+            <div class="form-group">
+                <label for="question-1">질문 1</label>
+                <input type="text" id="question-1" name="choice1" placeholder="첫 번째 질문을 입력하세요" required>
+            </div>
+            <div class="form-group">
+                <label for="question-2">질문 2</label>
+                <input type="text" id="question-2" name="choice2" placeholder="두 번째 질문을 입력하세요" required>
+            </div>
+            <div class="form-group">
+                <label for="question-3">질문 3</label>
+                <input type="text" id="question-3" name="choice3" placeholder="세 번째 질문을 입력하세요" required>
+            </div>
+        </div>
+        <div class="section">
+            <h2>년도 선택</h2>
+            <div class="form-group">
+                <label for="year">년도 선택</label>
+                <select id="year" name="year" required>
+                    <option value="2000">2000</option>
+                    <option value="2010">2010</option>
+                    <option value="2020">2020</option>
+                </select>
+            </div>
+        </div>
+        <div class="section">
+            <h2>정답 선택</h2>
+            <div class="form-group">
+                <label>정답 선택</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="answer-1" name="answer" value="1">
+                    <label for="answer-1">정답 1</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="answer-2" name="answer" value="2">
+                    <label for="answer-2">정답 2</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="answer-3" name="answer" value="3">
+                    <label for="answer-3">정답 3</label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn">밈 저장</button>
+    </form>
+</div>
+</body>
+</html>

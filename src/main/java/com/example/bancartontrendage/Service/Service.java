@@ -12,6 +12,7 @@ import com.example.bancartontrendage.Repository.UserRepository;
 import com.example.bancartontrendage.RestController.MemeController;
 import com.example.bancartontrendage.Util.Util;
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -98,11 +99,11 @@ public class Service {
         //틀   30살~
         System.out.println(userDto.getId());
         userDto.setAge(40L - (userDto.getScore()*2));
-        if(0 <= userDto.getAge() && userDto.getAge() <= 13){ //잼민이
+        if(userDto.getAge() == 0){ //잼민이
             userDto.setLevel("잼민이");
-        } else if (14 <= userDto.getAge() && userDto.getAge() <= 19){ //급식
+        } else if (1 <= userDto.getAge() && userDto.getAge() <= 6){ //급식
             userDto.setLevel("급식");
-        } else if (20 <= userDto.getAge() && userDto.getAge() <= 29){ //MZ
+        } else if (7 <= userDto.getAge() && userDto.getAge() <= 16){ //MZ
             userDto.setLevel("MZ");
         } else { //틀
             userDto.setLevel("틀");
@@ -122,6 +123,31 @@ public class Service {
         } else {
             return userEntityList.stream().map(UserEntity::toDto).toList();
         }
+    }
+
+    public void createMemeAdmin(MemeDto memeDto, MemeQuestionDto memeQuestionDto1,
+                                MemeQuestionDto memeQuestionDto2, MemeQuestionDto memeQuestionDto3) {
+        memeEntity = memeRepository.save(memeDto.toEntity());
+
+       memeQuestionDto1.setMemeId(memeEntity.getId());
+       memeQuestionDto2.setMemeId(memeEntity.getId());
+       memeQuestionDto3.setMemeId(memeEntity.getId());
+
+       memeQuestionDto1.setAnswer("false");
+       memeQuestionDto2.setAnswer("false");
+       memeQuestionDto3.setAnswer("false");
+
+       if(memeEntity.getAnswer() == 1){
+           memeQuestionDto1.setAnswer("true");
+       } else if (memeEntity.getAnswer() == 2){
+           memeQuestionDto2.setAnswer("true");
+       } else if (memeEntity.getAnswer() == 3){
+           memeQuestionDto3.setAnswer("true");
+       }
+
+       memeQuestionRepository.save(memeQuestionDto1.toEntity());
+       memeQuestionRepository.save(memeQuestionDto2.toEntity());
+       memeQuestionRepository.save(memeQuestionDto3.toEntity());
     }
 
 }

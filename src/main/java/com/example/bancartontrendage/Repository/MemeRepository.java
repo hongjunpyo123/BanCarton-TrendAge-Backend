@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface MemeRepository extends JpaRepository<MemeEntity, Long> {
     List<MemeEntity> findByYear(Long year);
+    MemeEntity findTopByOrderByIdDesc();
 }

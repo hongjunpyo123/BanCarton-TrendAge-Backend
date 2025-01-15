@@ -14,6 +14,7 @@ public class MemeQuestionEntity {
     @GeneratedValue
     private Long id;
 
+
     @Column
     private Long memeId;
 
