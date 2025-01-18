@@ -1,5 +1,5 @@
 
-# BanCarton-TrendAge-Backend
+# Bankathon-TrendAge-Backend
 
 ## 🚀 주요 기능
 
